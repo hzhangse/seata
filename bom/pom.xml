@@ -106,7 +106,7 @@
         <motan.version>1.0.0</motan.version>
         <jackson.version>2.9.8</jackson.version>
         <jcommander.version>1.72</jcommander.version>
-
+ 		<fabric8.kubernetes.version>4.1.0</fabric8.kubernetes.version>
         <!-- Compiler settings properties -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -358,6 +358,17 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.client.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.fabric8</groupId>
+                <artifactId>kubernetes-client</artifactId>
+                <version>${fabric8.kubernetes.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.fabric8</groupId>
+                <artifactId>kubernetes-server-mock</artifactId>
+                <version>${fabric8.kubernetes.version}</version>
+                <scope>test</scope>
+           </dependency>
             <dependency>
                 <groupId>com.weibo</groupId>
                 <artifactId>motan-core</artifactId>
