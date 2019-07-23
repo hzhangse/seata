@@ -170,7 +170,7 @@
             <id>release</id>
             <build>
                 <plugins>
-                    <!-- Javadoc -->
+                    <!-- Javadoc 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -188,7 +188,8 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!-- GPG -->
+                    -->
+                    <!-- GPG 
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -200,7 +201,7 @@
                             <autoReleaseAfterClose>false</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
-                    <plugin>
+                   <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>1.6</version>
@@ -216,11 +217,26 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin> -->
+                    <!--配置生成源码包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+                    
                 </plugins>
             </build>
 
-            <distributionManagement>
+ <!--            <distributionManagement>
                 <snapshotRepository>
                     <id>oss_seata</id>
                     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -229,7 +245,27 @@
                     <id>oss_seata</id>
                     <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                 </repository>
-            </distributionManagement>
+            </distributionManagement> -->
+			<distributionManagement>
+			   <repository>
+				 <id>${nexus-release-id}</id>
+				 <url>${nexus-release-url}</url>
+			   </repository>
+			   <snapshotRepository>
+				 <id>${nexus-snapshots-id}</id>
+				 <name>User Project Snapshot</name>
+				 <url>${nexus-snapshots-url}</url>
+				 <uniqueVersion>true</uniqueVersion>
+			   </snapshotRepository>
+			</distributionManagement>			
+			<properties>
+				<profileActive>prod</profileActive>
+				<nexus-iotbull-lib-repo-url>http://nexus.iotbull.com:8081/nexus/content/repositories/iotbull-lib-repo/</nexus-iotbull-lib-repo-url>
+				<nexus-release-url>http://nexus.iotbull.com:8081/nexus/content/repositories/releases</nexus-release-url>
+				<nexus-snapshots-url>http://nexus.iotbull.com:8081/nexus/content/repositories/snapshots</nexus-snapshots-url>
+				<nexus-release-id>nexus-release</nexus-release-id>
+				<nexus-snapshots-id>nexus-snapshots</nexus-snapshots-id>
+			</properties>            
 
         </profile>
         <profile>
