@@ -55,7 +55,9 @@ public enum RegistryType {
     /**
      * Sofa registry type
      */
-    Sofa;
+    Sofa,
+    
+    Kubernetes;
 
     /**
      * Gets type.
@@ -80,7 +82,9 @@ public enum RegistryType {
             return Etcd3;
         } else if (Sofa.name().equalsIgnoreCase(name)) {
             return Sofa;
-        } else {
+        } else if (Kubernetes.name().equalsIgnoreCase(name)) {
+            return Kubernetes;
+        }  else {
             throw new NotSupportYetException("unsupported type:" + name);
         }
     }
