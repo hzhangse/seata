@@ -109,7 +109,7 @@ public class KubernetesRegistryServiceImpl  implements RegistryService<Kubernete
         if (null == clusterName) {
             return null;
         }
-        if (!clusterAddressMap.containsKey(key)){
+        if (!clusterAddressMap.containsKey(clusterName)){
             refreshCluster();
         }
         return clusterAddressMap.get(clusterName);
