@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+metadata:
+  labels:
+    project: ${project.artifactId}
+    version: ${project.version}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        project: ${project.artifactId}
+        version: ${project.version}    
+    spec:                 
+      containers:
+      - env:
+        - name: JAVA_OPTIONS
+          value: -Dspring.profiles.active=prod
+        - name: JAVA_ENABLE_DEBUG
+          value: "false"
+        imagePullPolicy: Always    
+        command: [ "/bin/sh","-c","/opt/seata/bin/seata-server.sh","-m", "db"]  
+        volumeMounts:
+        - name: seata-config-volume
+          mountPath: /opt/seata/conf/file.conf  
+          subPath: path/to/opt/seata/conf/file.conf  
+        - name: seata-config-volume
+          mountPath: /opt/seata/conf/registry.conf  
+          subPath: path/to/opt/seata/conf/registry.conf            
+      imagePullSecrets:
+      - name: secret-aliyuncs
+      volumes:
+      - name: seata-config-volume
+        configMap:
+          name: seata-config 
+          items:
+          - key: file.conf
+            path: path/to/opt/seata/conf/file.conf
+          - key: registry.conf
+            path: path/to/opt/seata/conf/registry.conf            
+      
