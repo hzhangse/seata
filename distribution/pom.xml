@@ -36,7 +36,7 @@
     </dependencies>
 	<profiles>
 		<profile>
-			<id>release-seata</id>
+			<id>release</id>
 			<dependencies>
 				<dependency>
 					<groupId>io.seata</groupId>

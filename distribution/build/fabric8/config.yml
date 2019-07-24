@@ -35,7 +35,7 @@ data:
     }
     service {
       #vgroup->rgroup
-      vgroup_mapping.my_test_tx_group = "default"
+      vgroup_mapping.my_test_tx_group = "seata-distribution"
       #only support single node
       default.grouplist = "127.0.0.1:8091"
       #degrade current not support
@@ -125,12 +125,11 @@ data:
       # multi exporters use comma divided
       exporter-list = "prometheus"
       exporter-prometheus-port = 9898
-    }
----    
+    }        
   registry.conf: |-
     registry {
       # file 、nacos 、eureka、redis、zk、consul、etcd3、sofa
-      type = "zk"
+      type = "kubernetes"
     
       nacos {
         serverAddr = "localhost"
@@ -202,4 +201,4 @@ data:
         name = "file.conf"
       }
     }
-          
+      
