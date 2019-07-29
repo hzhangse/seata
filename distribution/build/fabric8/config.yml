@@ -58,7 +58,7 @@ data:
     
     ## transaction log store
     store {
-      ## store mode: file、db
+      ## store mode: file���db
       mode = "db"
     
       ## file store
@@ -95,7 +95,7 @@ data:
       }
     }
     lock {
-      ## the lock store mode: local、remote
+      ## the lock store mode: local���remote
       mode = "remote"
     
       local {
@@ -128,8 +128,8 @@ data:
     }        
   registry.conf: |-
     registry {
-      # file 、nacos 、eureka、redis、zk、consul、etcd3、sofa
-      type = "kubernetes"
+      # file ���nacos ���eureka���redis���zk���consul���etcd3���sofa
+      type = "zk"
     
       nacos {
         serverAddr = "localhost"
@@ -146,7 +146,7 @@ data:
         db = "0"
       }
       zk {
-        cluster = "default"
+        cluster = "seata-distribution"
         serverAddr = "paascloud-provider-zk:2181"
         session.timeout = 6000
         connect.timeout = 2000
@@ -174,7 +174,7 @@ data:
     }
     
     config {
-      # file、nacos 、apollo、zk、consul、etcd3
+      # file���nacos ���apollo���zk���consul���etcd3
       type = "file"
     
       nacos {
